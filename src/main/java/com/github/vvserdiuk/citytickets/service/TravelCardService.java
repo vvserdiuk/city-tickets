@@ -19,10 +19,9 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class TravelCardService {
 
-    private TravelCardRepository travelCardRepository;
-    private TransportRepository transportRepository;
-
-    private UserService userService;
+    private final TravelCardRepository travelCardRepository;
+    private final TransportRepository transportRepository;
+    private final UserService userService;
 
     @Transactional
     public void buyTravelCard(User user, Transport transport) {
@@ -40,13 +39,11 @@ public class TravelCardService {
     }
 
     private TravelCard createTravelCard(Set<Transport> transport) {
-        TravelCard travelCard = TravelCard.builder()
+        return TravelCard.builder()
                 .start(OffsetDateTime.now())
                 .end(OffsetDateTime.now().plusMonths(1))
                 .allowedTransport(transport)
                 .build();
-
-        return travelCardRepository.save(travelCard);
     }
 
     private BigDecimal getPrice(Transport transport) {

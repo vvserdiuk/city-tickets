@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public Optional<User> findUser(Long id) {
         return userRepository.findById(id);

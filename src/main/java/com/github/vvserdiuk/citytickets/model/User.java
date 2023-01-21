@@ -1,6 +1,8 @@
 package com.github.vvserdiuk.citytickets.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,8 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User {
