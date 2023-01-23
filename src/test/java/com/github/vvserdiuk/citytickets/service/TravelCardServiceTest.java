@@ -46,10 +46,8 @@ class TravelCardServiceTest {
                 .balance(BigDecimal.ONE)
                 .build();
 
-        var transport = Transport.BUS;
-        transport.setPrice(BigDecimal.TEN);
-
-        when(transportRepository.findById(0)).thenReturn(Optional.of(transport));
+        var transport = new Transport(Transport.Name.BUS, BigDecimal.TEN);
+        when(transportRepository.findById(Transport.Name.BUS)).thenReturn(Optional.of(transport));
 
         // act
         travelCardService.buyTravelCard(user, transport);
@@ -67,9 +65,8 @@ class TravelCardServiceTest {
                 .balance(BigDecimal.TEN)
                 .build();
 
-        var transport = Transport.BUS;
-        transport.setPrice(BigDecimal.ONE);
-        when(transportRepository.findById(0)).thenReturn(Optional.of(transport));
+        var transport = new Transport(Transport.Name.BUS, BigDecimal.ONE);
+        when(transportRepository.findById(Transport.Name.BUS)).thenReturn(Optional.of(transport));
 
         // act
         travelCardService.buyTravelCard(user, transport);
@@ -87,9 +84,8 @@ class TravelCardServiceTest {
                 .balance(BigDecimal.TEN)
                 .build();
 
-        var transport = Transport.BUS;
-        transport.setPrice(BigDecimal.ONE);
-        when(transportRepository.findById(0)).thenReturn(Optional.of(transport));
+        var transport = new Transport(Transport.Name.BUS, BigDecimal.ONE);
+        when(transportRepository.findById(Transport.Name.BUS)).thenReturn(Optional.of(transport));
 
         // act
         travelCardService.buyTravelCard(user, transport);

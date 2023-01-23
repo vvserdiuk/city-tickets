@@ -32,22 +32,22 @@ public class TravelCardService {
         }
 
         user.setBalance(user.getBalance().subtract(travelCardPrice));
-        TravelCard travelCard = createTravelCard(Set.of(transport));
+        TravelCard travelCard = createTravelCard(transport);
         user.setTravelCards(Set.of(travelCard));
         userService.save(user);
         travelCardRepository.save(travelCard);
     }
 
-    private TravelCard createTravelCard(Set<Transport> transport) {
+    private TravelCard createTravelCard(Transport transport) {
         return TravelCard.builder()
                 .start(OffsetDateTime.now())
                 .end(OffsetDateTime.now().plusMonths(1))
-                .allowedTransport(transport)
+                .transport(transport)
                 .build();
     }
 
     private BigDecimal getPrice(Transport transport) {
-         return transportRepository.findById(transport.ordinal()).orElseThrow().getPrice();
+         return transportRepository.findById(transport.getName()).get().getPrice();
     }
 
     public boolean isValid(TravelCard travelCard) {

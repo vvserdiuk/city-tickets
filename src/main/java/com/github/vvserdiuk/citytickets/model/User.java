@@ -15,7 +15,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "users")
 public class User {
 
     @Id
